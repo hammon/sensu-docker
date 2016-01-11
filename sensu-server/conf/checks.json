@@ -1,0 +1,18 @@
+{
+  "checks": {
+    "sanity": {
+      "command": "check_sanity",
+      "interval": 10,
+      "subscribers": [
+        "sanity"
+      ]
+    },
+    "apache2": {
+      "command": "check-procs.rb -p usr/sbin/apache2",
+      "subscribers": [
+        "apache2"
+      ],
+      "interval": 30
+    }
+  }
+}

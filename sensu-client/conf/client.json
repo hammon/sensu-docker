@@ -1,0 +1,10 @@
+{
+  "client": {
+    "name": "sensu-client",
+    "address": "sensu-client",
+    "subscriptions": [
+       "sanity",
+       "apache2"
+    ]
+  }
+}

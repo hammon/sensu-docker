@@ -1,0 +1,39 @@
+sensu-redis:
+    build: sensu-redis/.
+    container_name: sensu-redis
+    hostname: sensu-redis
+    ports:
+     - "6379"
+
+sensu-rabbitmq:
+    build: sensu-rabbitmq/.
+    container_name: sensu-rabbitmq
+    hostname: sensu-rabbitmq
+    ports:
+     - "5672"
+     - "15672:15672"
+
+sensu-server:
+    build: sensu-server/.
+    container_name: sensu-server
+    hostname: sensu-server
+    links:
+     - sensu-redis:sensu-redis
+     - sensu-rabbitmq:sensu-rabbitmq
+     - sensu-client:sensu-client
+    ports:
+     - "3000:3000"
+     - "4567"
+     - "5671"
+     - "15672"
+
+sensu-client:
+    build: sensu-client/.
+    container_name: sensu-client
+    hostname: sensu-client
+    links:
+     - sensu-redis:sensu-redis
+     - sensu-rabbitmq:sensu-rabbitmq
+    ports:
+     - "5672"
+     - "5671"
