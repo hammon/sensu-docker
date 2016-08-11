@@ -8,7 +8,7 @@ RUN echo "deb http://www.rabbitmq.com/debian testing main" >> /etc/apt/sources.l
     apt-get install -y wget && \
     wget https://www.rabbitmq.com/rabbitmq-signing-key-public.asc && \
     apt-key add rabbitmq-signing-key-public.asc && \
-    apt-get update && apt-get install -y rabbitmq-server
+    apt-get update && apt-get install -y --allow-unauthenticated rabbitmq-server
 
 
 COPY conf/rabbitmq.config /etc/rabbitmq/rabbitmq.config
